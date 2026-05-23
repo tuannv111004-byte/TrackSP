@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track SP Links</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div>
+        <h1>Track SP</h1>
+        <p>Dán link, lưu lại, rồi bấm để mở nhanh.</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="panel">
+        <form id="linkForm" class="link-form" action="#">
+          <label for="linkInput">Link cần lưu</label>
+          <div class="input-row">
+            <input id="linkInput" type="text" autocomplete="off" placeholder="https://example.com">
+            <button type="submit">Thêm link</button>
+          </div>
+          <p id="message" class="message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="list-head">
+          <h2>Danh sách link</h2>
+          <button id="clearBtn" class="secondary" type="button">Xóa hết</button>
+        </div>
+        <ul id="linksList" class="links-list"></ul>
+        <p id="emptyState" class="empty">Chưa có link nào.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
