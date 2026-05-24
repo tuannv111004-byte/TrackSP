@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Track SP Links</title>
+  <title>Track SP</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,30 +12,76 @@
     <header class="topbar">
       <div>
         <h1>Track SP</h1>
-        <p>Dan link, luu lai, roi bam de mo nhanh.</p>
+        <p>Dan link, luu lai, dang ky thiet bi truoc va bam bat dau khi can dem 24 gio.</p>
       </div>
     </header>
 
     <main class="main">
-      <section class="panel">
-        <form id="linkForm" class="link-form" action="#">
-          <label for="linkInput">Link can luu</label>
-          <div class="input-row">
-            <input id="linkInput" type="text" autocomplete="off" placeholder="https://example.com">
-            <button type="submit">Them link</button>
-          </div>
-          <p id="message" class="message" aria-live="polite"></p>
-        </form>
-      </section>
+      <nav class="tabs" aria-label="Chuc nang">
+        <button id="linksTab" class="tab active" type="button" data-tab="links">Link</button>
+        <button id="devicesTab" class="tab" type="button" data-tab="devices">Thiet bi 24h</button>
+      </nav>
 
-      <section class="panel">
-        <div class="list-head">
-          <h2>Danh sach link</h2>
-          <button id="clearBtn" class="secondary" type="button">Xoa het</button>
-        </div>
-        <ul id="linksList" class="links-list"></ul>
-        <p id="emptyState" class="empty">Chua co link nao.</p>
-      </section>
+      <div id="linksView" class="tab-view active">
+        <section class="panel">
+          <form id="linkForm" class="link-form" action="#">
+            <label for="linkInput">Link can luu</label>
+            <div class="input-row">
+              <input id="linkInput" type="text" autocomplete="off" placeholder="https://example.com">
+              <button type="submit">Them link</button>
+            </div>
+            <p id="linkMessage" class="message" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="list-head">
+            <h2>Danh sach link</h2>
+            <button id="clearLinksBtn" class="secondary" type="button">Xoa het</button>
+          </div>
+          <ul id="linksList" class="links-list"></ul>
+          <p id="linksEmptyState" class="empty">Chua co link nao.</p>
+        </section>
+      </div>
+
+      <div id="devicesView" class="tab-view">
+        <section class="panel">
+          <form id="deviceForm" class="device-form" action="#">
+            <label for="deviceInput">Dang ky thiet bi truoc</label>
+            <div class="input-row">
+              <input id="deviceInput" type="text" autocomplete="off" placeholder="iPhone 12 - may 01">
+              <button type="submit">Luu may</button>
+            </div>
+            <label class="sub-label" for="startInput">Gio bat dau hom nay neu muon dem ngay</label>
+            <input id="startInput" class="time-input" type="text" inputmode="numeric" maxlength="5" placeholder="08:30">
+            <p id="deviceMessage" class="message" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel stats">
+          <div>
+            <span id="totalCount">0</span>
+            <p>Tong thiet bi</p>
+          </div>
+          <div>
+            <span id="pendingCount">0</span>
+            <p>Dang dem</p>
+          </div>
+          <div>
+            <span id="readyCount">0</span>
+            <p>San sang</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="list-head">
+            <h2>Thiet bi 24h</h2>
+            <button id="clearDevicesBtn" class="secondary" type="button">Xoa het</button>
+          </div>
+          <ul id="devicesList" class="devices-list"></ul>
+          <p id="devicesEmptyState" class="empty">Chua co thiet bi nao.</p>
+        </section>
+      </div>
     </main>
   </div>
 
