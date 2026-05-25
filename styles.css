@@ -19,7 +19,7 @@ input {
 
 .page {
   width: 100%;
-  max-width: 880px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 28px 16px 40px;
   box-sizing: border-box;
@@ -44,6 +44,33 @@ input {
   display: block;
 }
 
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.tab {
+  background: #ffffff;
+  border-color: #b9c5bf;
+  color: #287a54;
+}
+
+.tab.active {
+  background: #287a54;
+  border-color: #287a54;
+  color: #ffffff;
+}
+
+.tab-view {
+  display: none;
+}
+
+.tab-view.active {
+  display: block;
+}
+
 .panel {
   background: #ffffff;
   border: 1px solid #d9e0dc;
@@ -53,10 +80,17 @@ input {
   padding: 18px;
 }
 
-.link-form label {
+.link-form label,
+.device-form label {
   display: block;
   font-weight: bold;
   margin-bottom: 8px;
+}
+
+.sub-label {
+  color: #536159;
+  font-size: 14px;
+  margin-top: 12px;
 }
 
 .input-row {
@@ -81,6 +115,33 @@ input {
 }
 
 .input-row input:focus {
+  border-color: #287a54;
+  outline: none;
+}
+
+.time-input,
+.inline-time-input {
+  height: 38px;
+  border: 1px solid #b9c5bf;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.time-input {
+  width: 100%;
+  max-width: 280px;
+}
+
+.inline-time-input {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  max-width: 230px;
+  vertical-align: middle;
+}
+
+.time-input:focus,
+.inline-time-input:focus {
   border-color: #287a54;
   outline: none;
 }
@@ -128,6 +189,29 @@ button:focus {
   color: #287a54;
 }
 
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.stats div {
+  border: 1px solid #e1e7e3;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.stats span {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.stats p {
+  margin: 2px 0 0;
+  color: #536159;
+}
+
 .list-head {
   overflow: hidden;
   margin-bottom: 12px;
@@ -143,22 +227,26 @@ button:focus {
   float: right;
 }
 
-.links-list {
+.links-list,
+.devices-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.links-list li {
+.links-list li,
+.devices-list li {
   border-top: 1px solid #e4e9e6;
   padding: 12px 0;
 }
 
-.links-list li:first-child {
+.links-list li:first-child,
+.devices-list li:first-child {
   border-top: 0;
 }
 
-.link-title {
+.link-title,
+.device-name {
   display: block;
   color: #1f2a24;
   font-weight: bold;
@@ -175,6 +263,60 @@ button:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.device-main {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.device-name {
+  display: table-cell;
+}
+
+.device-status {
+  display: table-cell;
+  width: 112px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: center;
+}
+
+.pending .device-status {
+  background: #fff4db;
+  color: #81510f;
+}
+
+.registered .device-status {
+  background: #eef2f0;
+  color: #536159;
+}
+
+.ready .device-status {
+  background: #e8f5ee;
+  color: #287a54;
+}
+
+.device-meta {
+  color: #536159;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.device-meta span {
+  display: inline-block;
+  margin: 0 14px 4px 0;
+}
+
+.countdown {
+  color: #1f2a24;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
 .actions {
@@ -213,9 +355,19 @@ button:focus {
   border-color: #d1aaa3;
 }
 
+.devices-list .actions button:first-child {
+  color: #287a54;
+  border-color: #287a54;
+}
+
 .actions button:hover,
 .actions button:focus {
   background: #fff1ef;
+}
+
+.devices-list .actions button:first-child:hover,
+.devices-list .actions button:first-child:focus {
+  background: #edf6f1;
 }
 
 .empty {
@@ -234,6 +386,10 @@ button:focus {
     font-size: 28px;
   }
 
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+
   .input-row,
   .input-row input,
   .input-row button {
@@ -250,6 +406,17 @@ button:focus {
     margin-top: 8px;
   }
 
+  .time-input,
+  .inline-time-input {
+    display: block;
+    width: 100%;
+    max-width: none;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
   .list-head h2,
   .list-head button {
     float: none;
@@ -258,5 +425,16 @@ button:focus {
   .list-head button {
     margin-top: 10px;
     width: 100%;
+  }
+
+  .device-main,
+  .device-name,
+  .device-status {
+    display: block;
+    width: 100%;
+  }
+
+  .device-status {
+    margin-top: 8px;
   }
 }
